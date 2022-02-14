@@ -17,5 +17,12 @@
 | `/peliculas`| POST | Consulta de películas queryString| Protegida |
 | `/peliculas/ficha/:id`| GET | Ficha de películas mostrar usuarios afines a las películas | Protegida |
 | `/peliculas/ficha/usuario/:id`| POST | Añadir usuario a tu lista de amig@s | Protegida |
+| `/grupos/usuario/:id`| GET| Listado de grupos | Protegida |
+| `/grupo/:id`| GET | Ficha del grupo | Protegida |
+| `/grupo/:id` | POST | Nuevo mensaje | Protegida |
+| `/grupo/create` | GET | Creación de grupo | Protegida |
+| `/grupo/create` | POST | Creación de grupo | Protegida |
+| `/amigos/:id`| GET | Listado de amigos |
 | `/email/:id`| POST | Email de confirmación de registro | Protegida |
+        return /^ (?=.* [0 - 9])(?=.* [a - z])(?=.* [A - Z])(?=.* [@#$%^& -+=()]) (?=\\S + $).{ 8, 20 } $/.test(password)
 
