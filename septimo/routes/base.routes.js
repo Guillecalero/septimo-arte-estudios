@@ -1,5 +1,9 @@
 const router = require('express').Router()
+const bcryptjs = require('bcryptjs')
 const User = require('./../models/User.model')
+
+const saltRounds = 10
+
 // const Group = require('./..models/Group.model')
 // const Message = require('./..models/Message.model')
 
@@ -15,13 +19,22 @@ router.get("/registro", (req, res, next) => {
 
 router.post("/registro", (req, res, next) => {
 
-    const { username, password, favoritesMovies, email, birth, sex } = req.body
+    const { username, userPwd, favoritesMovies, email, birth, sex } = req.body
 
-    User
-        .create({ username, password, favoritesMovies, email, birth, sex })
-        .then(user => res.redirect("/"))
-        .catch(err => next(err))
+    bcryptjs
+        .genSalt(saltRounds)
+        .then(salt => bcryptjs.hash(userPwd, saltRounds))
+        .then(password => {
 
+
+            User
+                .create({ username, password, favoritesMovies, email, birth, sex })
+                .then(user => res.redirect("/"))
+                .catch(err => next(err))
+
+        })
+        .then(createdUser => res.redirect("/"))
+        .catch(error => next(error))
 })
 
 router.get("/acceso", (req, res, next) => {
@@ -31,8 +44,10 @@ router.get("/acceso", (req, res, next) => {
 router.post("/acceso", (req, res, next) => {
     const { username, password } = req.body
 
-    User
-        .findById()
+
+
+    //     User
+    //         .findById()
 })
 
 

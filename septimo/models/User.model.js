@@ -53,4 +53,3 @@ const User = model("User", userSchema);
 module.exports = User
 
 
-// AÑADIR GRUPOS Y SISRTEMA DE AMIGIOS
