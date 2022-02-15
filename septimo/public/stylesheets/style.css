@@ -6,3 +6,19 @@ body {
 .navbar {
   margin-bottom: 40px;
 }
+
+footer {
+    color: white;
+    text-align: center;
+    font-size: .8em;
+    padding: 3px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+#moviesPanel img {
+  height: 200px;
+  object-fit: cover;
+
+}
