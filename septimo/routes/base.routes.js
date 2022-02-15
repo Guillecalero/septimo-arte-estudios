@@ -9,7 +9,10 @@ const saltRounds = 10
 
 
 router.get("/", (req, res, next) => {
+    res.render("index");
+});
 
+router.post("/", (req, res, next) => {
     res.render("index");
 });
 
@@ -54,7 +57,6 @@ router.post('/acceso', (req, res, next) => {
     User
         .findOne({ username })
         .then(user => {
-            console.log(user)
             if (!user) {
                 res.render('auth/login', { errorMessage: 'Email no registrado en la Base de Datos' })
                 return
@@ -76,6 +78,9 @@ router.post("/acceso", (req, res, next) => {
 
 
 
+//     User
+//         .findById()
+// Logout
 router.post('/cerrar-sesion', (req, res) => {
     req.session.destroy(() => res.redirect('/acceso'))
 })
