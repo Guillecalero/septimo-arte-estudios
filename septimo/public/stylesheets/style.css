@@ -20,5 +20,13 @@ footer {
 #moviesPanel img {
   height: 200px;
   object-fit: cover;
+}
+img {
+  object-fit: cover;
+  height: 200px;
+}
 
+nav > form > button{
+  background-color: black;
+  color: white
 }

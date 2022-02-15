@@ -43,11 +43,14 @@
                </li>
                </li>
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/logout">Amigos</a>
+                  <a class="nav-link active" aria-current="page" href="/cerrar-sesion">Amigos</a>
                </li>
                </li>
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/logout">Cerrar sesión</a>
+                  <form action="/cerrar-sesion" method="post">
+                     <button>Cerrar sesión</button>
+                  </form>
+
                </li>
 
             </ul>
@@ -66,7 +69,7 @@
 
    <footer class="footer mt-auto py-3 bg-dark">
       <div class="container">
-         <span>Derechos Septimo Arte S.L.</span>
+         <span class="text-muted">Derechos Séptimo Arte S.L.</span>
       </div>
    </footer>
 </body>

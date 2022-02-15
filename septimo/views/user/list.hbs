@@ -1,0 +1,20 @@
+<h1>Usuari@s</h1>
+
+{{#each userList}}
+
+<ul>
+    <li>{{username}}</li>
+    <li>{{email}}</li>
+    <li>{{birth}}</li>
+    <li>{{sex}}</li>
+    <li>{{imageURL}}</li>
+
+    <form action="/perfil/editar/{{id}}" method="POST">
+        <button>Editar</button>
+    </form>
+    <form action="/perfil/borrar/{{id}}" method="POST">
+        <button>Borrar</button>
+    </form>
+</ul>
+
+{{/each}}
