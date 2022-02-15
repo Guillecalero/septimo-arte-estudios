@@ -6,3 +6,13 @@ body {
 .navbar {
   margin-bottom: 40px;
 }
+
+img {
+  object-fit: cover;
+  height: 200px;
+}
+
+nav > form > button{
+  background-color: black;
+  color: white
+}

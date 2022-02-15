@@ -33,7 +33,11 @@ const userSchema = new Schema(
         return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(email)
       }
     },
-    imageURL: String,
+    imageURL: {
+      type: String,
+      default: 'https://img.favpng.com/17/1/20/user-interface-design-computer-icons-default-png-favpng-A0tt8aVzdqP30RjwFGhjNABpm.jpg'
+
+    },
     birth: {
       type: Date
     },
