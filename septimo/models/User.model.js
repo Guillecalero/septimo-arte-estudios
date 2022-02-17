@@ -16,7 +16,8 @@ const userSchema = new Schema(
     favoritesMovies: [String],
     friends: [{
       type: Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      unique: true
     }],
 
     role: {
@@ -53,7 +54,7 @@ const userSchema = new Schema(
 )
 
 const User = model("User", userSchema);
-
+// User.syncIndexes();
 module.exports = User
 
 

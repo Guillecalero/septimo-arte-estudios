@@ -1,20 +1,75 @@
-<h1>Usuari@s</h1>
+{{!-- <div class="card" style="width: 18rem;">
+    <div class="card-header">
+        <h1>Usuari@s</h1>
+    </div>
+    {{#each userList}}
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item mt-3">{{username}}</li>
+        <li class="list-group-item mt-3">{{email}}</li>
+        <li class="list-group-item mt-3">{{birth}}</li>
+        <li class="list-group-item mt-3">{{sex}}</li>
+        <li class="list-group-item mt-3">{{imageURL}}</li>
 
-{{#each userList}}
+        <div class="list-group-item mt-3">
+            <form class="list-group-item mt-3" action="/perfil/editar/{{id}} mt-3" method="POST">
+                <button>Ver perfil</button>
+            </form>
+            <form class="list-group-item mt-3" action="/perfil/borrar/{{id}} mt-3" method="POST">
+                <button>Borrar</button>
+            </form>
+        </div>
 
-<ul>
-    <li>{{username}}</li>
-    <li>{{email}}</li>
-    <li>{{birth}}</li>
-    <li>{{sex}}</li>
-    <li>{{imageURL}}</li>
 
-    <form action="/perfil/editar/{{id}}" method="POST">
-        <button>Editar</button>
-    </form>
-    <form action="/perfil/borrar/{{id}}" method="POST">
-        <button>Borrar</button>
-    </form>
-</ul>
 
-{{/each}}
+</div>
+</ul> --}}
+
+
+{{!-- {{/each}} --}}
+{{!-- <div class="row">
+    {{#each userList}}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+
+        </div>
+
+    </div>
+    {{/each}}
+</div> --}}
+<div class="container">
+    <h1>Usuari@s</h1>
+
+    <div class="row">
+        {{#each userList}}
+
+        <div class="card" style="width: 18rem;">
+
+            <img src="{{imageURL}}" class="card-img-top" alt="foto-usuari@">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{username}}</li>
+                <li class="list-group-item">{{email}}</li>
+                <li class="list-group-item">{{birth}}</li>
+                <li class="list-group-item">{{sex}}</li>
+            </ul>
+
+            <div class="card-body">
+                <form class="list-group-item mt-3" action="/perfil/editar/{{id}}" method="POST">
+                    <button>Ver perfil</button>
+                </form>
+                <form class="list-group-item mt-3" action="/perfil/borrar/{{id}}" method="POST">
+                    <button>Borrar</button>
+                </form>
+            </div>
+
+        </div>
+        {{/each}}
+    </div>
+
+</div>
+</div>

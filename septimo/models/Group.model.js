@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 const groupSchema = new Schema({
 
@@ -25,13 +25,17 @@ const groupSchema = new Schema({
         ref: 'Message'
     }],
 
-    imageURL: String
+    imageURL:
+    {
+        type: String,
+        default: 'https://www.datocms-assets.com/14946/1597837788-cohort.png'
+    }
 },
     {
         timestamps: true,
     }
 )
 
-const Group = model("Group", groupSchema);
+const Group = model('Group', groupSchema);
 
 module.exports = Group

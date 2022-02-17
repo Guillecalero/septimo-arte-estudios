@@ -6,8 +6,9 @@ router.get('/perfil', (req, res, next) => {
     console.log(req.session.currentUser._id)
     User
         .findById(req.session.currentUser._id)
-        .then(user => res.render("auth/profile", user))
+        .then(user => res.render('auth/profile', user))
         .catch(err => next(err))
+
 })
 
 router.get('/perfil/editar/:id', (req, res, next) => {
@@ -15,7 +16,7 @@ router.get('/perfil/editar/:id', (req, res, next) => {
 
     User
         .findById(id)
-        .then(user => res.render("user/edit", user))
+        .then(user => res.render('user/edit', user))
         .catch(err => next(err))
 })
 
@@ -40,12 +41,21 @@ router.get('/perfil/user/lista', (req, res, next) => {
 
 router.post('/perfil/borrar/:id', (req, res, next) => {
     const { id } = req.params
-    console.log(req.params, "pafavaaa")
+
     User
         .findByIdAndDelete(id)
-        .then(() => res.redirect("/perfil/user/lista"))
+        .then(() => res.redirect('/perfil/user/lista'))
         .catch(err => next(err))
 
+})
+
+router.post('/perfil/nuevoamigo/:userid/:groupid', (req, res, next) => {
+    const { userid, groupid } = req.params
+    console.log(req.params);
+    User
+        .findByIdAndUpdate(req.session.currentUser._id, { $push: { friends: userid } })
+        .then(() => res.redirect(`/grupos/detalles/${groupid}`))
+        .catch(err => next(err))
 })
 
 module.exports = router;

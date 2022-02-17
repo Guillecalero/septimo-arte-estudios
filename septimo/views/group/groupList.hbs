@@ -1,0 +1,53 @@
+{{!-- <h1>Lista de grupos</h1>
+
+{{#each groups}}
+<ul>
+    <li>{{groupName}}</li>
+    <li>{{imageURL}}</li>
+
+    <form class="list-group-item mt-3" action="/grupos/lista/{{id}} mt-3" method="POST">
+        <button>editar</button>
+    </form>
+    <form class="list-group-item mt-3" action="/grupos/lista/{{id}} mt-3" method="POST">
+        <button>Borrar</button>
+    </form>
+
+
+
+</ul> --}}
+
+
+
+{{!-- {{/each}} --}}
+
+<div class="container">
+    <h1>Lista de grupos</h1>
+
+    <div class="row">
+        {{#each groups}}
+
+        <div class="card" style="width: 18rem;">
+
+            <img src="{{imageURL}}" class="card-img-top" alt="foto-grupo">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="/grupos/detalles/{{id}}">{{groupName}}</a></li>
+            </ul>
+
+            <div class="card-body">
+                <form class=e"list-group-item mt-3" action="/grupos/editar/{{_id}}" method="GET">
+                    <button>Editar</button>
+                </form>
+                <form class="list-group-item mt-3" action="/grupos/borrar/{{_id}}" method="POST">
+                    <button>Borrar</button>
+                </form>
+                <form class="list-group-item mt-3" action="/grupos/unirse/{{_id}}" method="POST">
+                    <button>Unirse</button>
+                </form>
+            </div>
+
+        </div>
+        {{/each}}
+    </div>
+
+</div>
+</div>

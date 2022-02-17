@@ -12,7 +12,7 @@ const express = require("express");
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
-hbs.registerPartials(`${__dirname}/views/partials/`) 
+hbs.registerPartials(`${__dirname}/views/partials/`)
 
 const app = express();
 
@@ -20,7 +20,7 @@ const app = express();
 require("./config")(app);
 require("./config/session.config")(app);
 
-app.locals.appTitle = "septimo arte estudios";
+app.locals.appTitle = 'SÉPTIMO ARTE ESTUDIOS';
 
 // 👇 Start handling routes here
 require('./routes')(app)
