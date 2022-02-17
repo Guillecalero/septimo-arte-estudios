@@ -41,10 +41,8 @@ router.post("/registro", (req, res, next) => {
 })
 
 
-// Login from (render)
 router.get('/acceso', (req, res, next) => res.render('auth/login'))
 
-// Login form (handle)
 router.post('/acceso', (req, res, next) => {
 
     const { username, userPwd } = req.body
@@ -65,8 +63,6 @@ router.post('/acceso', (req, res, next) => {
                 return
             } else {
                 req.session.currentUser = user
-                console.log(req.session.currentUser);
-
                 res.redirect('/perfil')
             }
         })
@@ -76,11 +72,6 @@ router.post("/acceso", (req, res, next) => {
     const { username, password } = req.body
 })
 
-
-
-//     User
-//         .findById()
-// Logout
 router.post('/cerrar-sesion', (req, res) => {
     req.session.destroy(() => res.redirect('/acceso'))
 })

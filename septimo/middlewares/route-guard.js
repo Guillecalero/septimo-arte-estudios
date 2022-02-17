@@ -5,4 +5,9 @@ const isLoggedIn = (req, res, next) => {
     }
     next();
 }
-module.exports = { isLoggedIn }
+
+const checkRole = (...admittedRoles) => (req, res, next) => {
+    admittedRoles.includes(req.session.currentUser.role) ? next() : res.redirect('/perfil')
+}
+
+module.exports = { isLoggedIn, checkRole }

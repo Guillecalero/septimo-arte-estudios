@@ -5,7 +5,7 @@ class ApiHandler {
         this.axiosApp = axios.create({
             baseURL: 'https://imdb-api.com/en/API'
         })
-        this.key='k_56a5f2v5'
+        this.key=process.env.API_KEY_DEV
     }
 
 
@@ -17,7 +17,7 @@ class ApiHandler {
         return this.axiosApp.get(`/comingsoon`)
     }
 
-    getReviewa(filmId) {
+    getReview(filmId) {
         return this.axiosApp.get(`/reviews/${this.key}/${filmId}`)
     }
     
