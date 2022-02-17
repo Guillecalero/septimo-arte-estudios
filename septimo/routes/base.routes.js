@@ -8,19 +8,19 @@ const saltRounds = 10
 // const Message = require('./..models/Message.model')
 
 
-router.get("/", (req, res, next) => {
-    res.render("index");
+router.get('/', (req, res, next) => {
+    res.render('index');
 });
 
-router.post("/", (req, res, next) => {
-    res.render("index");
+router.post('/', (req, res, next) => {
+    res.render('index');
 });
 
-router.get("/registro", (req, res, next) => {
-    res.render("auth/sign-up")
+router.get('/registro', (req, res, next) => {
+    res.render('auth/sign-up')
 })
 
-router.post("/registro", (req, res, next) => {
+router.post('/registro', (req, res, next) => {
 
     const { username, userPwd, favoritesMovies, email, birth, sex } = req.body
 
@@ -32,11 +32,11 @@ router.post("/registro", (req, res, next) => {
 
             User
                 .create({ username, password, favoritesMovies, email, birth, sex })
-                .then(user => res.redirect("/"))
+                .then(user => res.redirect('/'))
                 .catch(err => next(err))
 
         })
-        .then(createdUser => res.redirect("/"))
+        .then(createdUser => res.redirect('/'))
         .catch(error => next(error))
 })
 
@@ -68,7 +68,7 @@ router.post('/acceso', (req, res, next) => {
         })
 })
 
-router.post("/acceso", (req, res, next) => {
+router.post('/acceso', (req, res, next) => {
     const { username, password } = req.body
 })
 

@@ -1,0 +1,110 @@
+const router = require('express').Router()
+const Group = require('../models/Group.model')
+const { isLoggedIn, checkRole } = require('../middlewares/route-guard')
+const Message = require('../models/Message.model')
+
+router.get('/grupos', isLoggedIn, (req, res, next) => {
+    res.render('group/group')
+})
+
+router.get('/grupos/crear', isLoggedIn, (req, res, next) => {
+    res.render('group/group')
+})
+
+router.post('/grupos/crear', isLoggedIn, (req, res, next) => {
+
+    const { groupName, imageURL } = req.body
+
+    Group
+        .create({ groupName, imageURL }, { new: true })
+        .then(() => res.redirect('/grupos/lista'))
+        .catch(err => next(err))
+})
+
+router.get('/grupos/lista', isLoggedIn, (req, res, next) => {
+
+    Group
+        .find()
+        .then(groups => res.render('group/groupList', { groups }))
+        .catch(err => next(err))
+})
+
+router.get('/grupos/editar/:id', isLoggedIn, (req, res, next) => {
+    const { id } = req.params
+    Group
+        .findById(id)
+        .then(group => res.render('group/groupEdit', group))
+        .catch(err => next(err))
+})
+
+router.post('/grupos/editar/:id', isLoggedIn, (req, res, next) => {
+    const { id } = req.params
+    const { groupName, userCreator, users, messages, imageURL } = req.body
+
+    Group
+        .findByIdAndUpdate(id, { groupName, userCreator, users, messages, imageURL }, { new: true })
+        .then(() => res.redirect('/grupos/lista'))
+        .catch(err => next(err))
+
+})
+
+router.post('/grupos/borrar/:id', isLoggedIn, (req, res, next) => {
+    const { id } = req.params
+
+    Group
+        .findByIdAndDelete(id)
+        .then(() => res.redirect('/grupos/lista'))
+        .catch(err => next(err))
+})
+
+router.post('/grupos/unirse/:id', isLoggedIn, (req, res, next) => {
+    const { id } = req.params
+    // console.log(req.session.currentUser)
+    Group
+        .findByIdAndUpdate(id, { users: req.session.currentUser._id })
+        .then(() => res.redirect('/grupos/lista'))
+        .catch(err => next(err))
+})
+
+router.get('/grupos/detalles/:id', isLoggedIn, (req, res, next) => {
+
+    const { id } = req.params
+
+    Group
+        .findById(id)
+        .populate('messages')
+        .populate('users')
+        .then(group => {
+            res.render('group/profile', { group, user: req.session.currentUser._id })
+            //console.log(group);
+        })
+        .catch(err => next(err))
+
+})
+
+
+router.post('/grupos/mensaje/nuevo/:id', isLoggedIn, (req, res, next) => {
+    const { id } = req.params
+    const { title, message } = req.body
+    console.log(req.body)
+
+    Message
+        .create({ title, message, user: req.session.currentUser._id })
+        .then((mess) => { return Group.findByIdAndUpdate(id, { $push: { messages: mess.id } }) })
+        .then(res.redirect(`/grupos/detalles/${id}`))
+        .catch(err => next(err))
+
+    // Group
+    //     .findByIdAndUpdate(id, { messages: id })
+    //     .then(()=> res.render
+    //     .catch(err => next(err))
+})
+
+
+
+// TODO ruta para group details  cargar grupo populando los usuarios
+//  group. find by id
+//  messages .find({grupo: req.params.grupID})
+// send group, messages
+
+module.exports = router

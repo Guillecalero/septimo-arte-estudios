@@ -1,0 +1,29 @@
+<div class="container">
+    <img src="{{group.imageURL}}" alt="groupimage">
+    <h1>{{group.groupName}}</h1>
+    {{group.id}}
+    {{#each group.messages}}
+    <p>Título: {{title}}</p>
+    <p>Mensaje: {{message}}</p>
+
+
+    {{/each}}
+
+    <form action="/grupos/mensaje/nuevo/{{group.id}}" method="post">
+        <label for="titleInput">Título
+            <input type="text" name="title">
+
+        </label>
+        <textarea name="message" id="messageInput" cols="30" rows="10" placeholder="Introduce tu mensaje"></textarea>
+        <button>Crear</button>
+    </form>
+    {{#each group.users}}
+    {{username}}
+    <form action="/perfil/nuevoamigo/{{id}}/{{./../group.id}}" method="post">
+        <button>Añadir amig@ </button>
+
+    </form>
+    {{/each}}
+
+
+</div>

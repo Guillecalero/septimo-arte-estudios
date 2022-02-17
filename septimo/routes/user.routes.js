@@ -27,7 +27,6 @@ let results = []
             .catch(err => next(err))
     })
 
-
     router.get('/perfil/editar/:id', isLoggedIn, (req, res, next) => {
         const { id } = req.params
         User
@@ -69,7 +68,14 @@ let results = []
             .findByIdAndDelete(id)
             .then(() => res.redirect("/perfil/user/lista"))
             .catch(err => next(err))
-
     })
+router.post('/perfil/nuevoamigo/:userid/:groupid', (req, res, next) => {
+    const { userid, groupid } = req.params
+    console.log(req.params);
+    User
+        .findByIdAndUpdate(req.session.currentUser._id, { $push: { friends: userid } })
+        .then(() => res.redirect(`/grupos/detalles/${groupid}`))
+        .catch(err => next(err))
+})
 
-    module.exports = router;
+module.exports = router;
