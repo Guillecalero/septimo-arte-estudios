@@ -2,6 +2,8 @@ const router = require('express').Router()
 const Group = require('../models/Group.model')
 const { isLoggedIn, checkRole } = require('../middlewares/route-guard')
 const Message = require('../models/Message.model')
+const fileUploader = require('../config/cloudinay.config')
+
 
 router.get('/grupos', isLoggedIn, (req, res, next) => {
     res.render('group/group')
@@ -37,12 +39,12 @@ router.get('/grupos/editar/:id', isLoggedIn, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/grupos/editar/:id', isLoggedIn, (req, res, next) => {
+router.post('/grupos/editar/:id', isLoggedIn, fileUploader.single('imageFile'), (req, res, next) => {
     const { id } = req.params
-    const { groupName, userCreator, users, messages, imageURL } = req.body
-
+    const { groupName } = req.body
+    console.log(req.file.path, id)
     Group
-        .findByIdAndUpdate(id, { groupName, userCreator, users, messages, imageURL }, { new: true })
+        .findByIdAndUpdate(id, { groupName: groupName, imageURL: req.file.path }, { new: true })
         .then(() => res.redirect('/grupos/lista'))
         .catch(err => next(err))
 
@@ -59,7 +61,6 @@ router.post('/grupos/borrar/:id', isLoggedIn, (req, res, next) => {
 
 router.post('/grupos/unirse/:id', isLoggedIn, (req, res, next) => {
     const { id } = req.params
-
     Group
         .findByIdAndUpdate(id, { users: req.session.currentUser._id })
         .then(() => res.redirect('/grupos/lista'))
@@ -84,12 +85,11 @@ router.get('/grupos/detalles/:id', isLoggedIn, (req, res, next) => {
 router.post('/grupos/mensaje/nuevo/:id', isLoggedIn, (req, res, next) => {
     const { id } = req.params
     const { title, message } = req.body
-    console.log(req.body)
 
     Message
         .create({ title, message, user: req.session.currentUser._id })
-        .then((mess) => { return Group.findByIdAndUpdate(id, { $push: { messages: mess.id } }) })
-        .then(res.redirect(`/grupos/detalles/${id}`))
+        .then((mess) => Group.findByIdAndUpdate(id, { $push: { messages: mess.id } }))
+        .then(() => res.redirect(`/grupos/detalles/${id}`))
         .catch(err => next(err))
 })
 

@@ -25,22 +25,20 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
-    }
-
-    .row{
-      margin-bottom: 200px;
-
-    }
-
-#moviesPanel img {
-  /* height: 200px;
-  object-fit: cover; */
+}
+.row{
+  margin-bottom: 200px;
+}
+#movies {
+  margin: 100px 0 100px 0 ;
 }
 img {
-  object-fit: cover;
-  height: 200px;
+  /* object-fit: cover;
+  height: 200px; */
 }
-
+.card{
+  color: #000;
+}
 nav > form > button{
   background-color: black;
   color: white
