@@ -59,7 +59,7 @@ router.post('/grupos/borrar/:id', isLoggedIn, (req, res, next) => {
 
 router.post('/grupos/unirse/:id', isLoggedIn, (req, res, next) => {
     const { id } = req.params
-    // console.log(req.session.currentUser)
+
     Group
         .findByIdAndUpdate(id, { users: req.session.currentUser._id })
         .then(() => res.redirect('/grupos/lista'))
@@ -76,12 +76,10 @@ router.get('/grupos/detalles/:id', isLoggedIn, (req, res, next) => {
         .populate('users')
         .then(group => {
             res.render('group/profile', { group, user: req.session.currentUser._id })
-            //console.log(group);
         })
         .catch(err => next(err))
 
 })
-
 
 router.post('/grupos/mensaje/nuevo/:id', isLoggedIn, (req, res, next) => {
     const { id } = req.params
@@ -93,18 +91,6 @@ router.post('/grupos/mensaje/nuevo/:id', isLoggedIn, (req, res, next) => {
         .then((mess) => { return Group.findByIdAndUpdate(id, { $push: { messages: mess.id } }) })
         .then(res.redirect(`/grupos/detalles/${id}`))
         .catch(err => next(err))
-
-    // Group
-    //     .findByIdAndUpdate(id, { messages: id })
-    //     .then(()=> res.render
-    //     .catch(err => next(err))
 })
-
-
-
-// TODO ruta para group details  cargar grupo populando los usuarios
-//  group. find by id
-//  messages .find({grupo: req.params.grupID})
-// send group, messages
 
 module.exports = router

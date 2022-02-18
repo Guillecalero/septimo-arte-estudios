@@ -4,10 +4,6 @@ const User = require('./../models/User.model')
 
 const saltRounds = 10
 
-// const Group = require('./..models/Group.model')
-// const Message = require('./..models/Message.model')
-
-
 router.get('/', (req, res, next) => {
     res.render('index');
 });

@@ -1,7 +1,17 @@
 body {
   font-family: sans-serif;
   font-weight: 300;
+
+background-image: url('./../images/wp3160287.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color:#fff;
 }
+#home{
+  color:#fff;
+  
+}
+
 
 .navbar {
   margin-bottom: 40px;
@@ -15,7 +25,12 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
-}
+    }
+
+    .row{
+      margin-bottom: 200px;
+
+    }
 
 #moviesPanel img {
   /* height: 200px;
@@ -30,3 +45,8 @@ nav > form > button{
   background-color: black;
   color: white
 }
+
+a {
+  text-decoration: none;
+}
+
