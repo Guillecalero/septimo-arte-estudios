@@ -16,7 +16,8 @@ const formatDate = date => {
 
 const isAdmin = user => user.role === 'ADMIN'
 const isUser = user => user.role === 'USER'
+const isUserLoged = user => {user.role === 'USER' || user.role === 'ADMIN'}
 
 
 
-module.exports = { cleanText, checkMongoID, formatDate, isAdmin, isUser }
+module.exports = { cleanText, checkMongoID, formatDate, isAdmin, isUser, isUserLoged }

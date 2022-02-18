@@ -27,15 +27,7 @@ router.post('/registro', (req, res, next) => {
     bcryptjs
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(userPwd, saltRounds))
-        .then(password => {
-
-
-            User
-                .create({ username, password, favoritesMovies, email, birth, sex })
-                .then(user => res.redirect('/'))
-                .catch(err => next(err))
-
-        })
+        .then(password => User.create({ username, password, favoritesMovies, email, birth, sex }))
         .then(createdUser => res.redirect('/'))
         .catch(error => next(error))
 })

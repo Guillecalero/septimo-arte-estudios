@@ -28,7 +28,6 @@ const groupSchema = new Schema({
     imageURL:
     {
         type: String,
-        default: 'https://www.datocms-assets.com/14946/1597837788-cohort.png'
     }
 },
     {

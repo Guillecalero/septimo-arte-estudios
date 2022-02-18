@@ -1,8 +1,14 @@
 body {
   font-family: sans-serif;
   font-weight: 300;
+  background-image: url('./../images/wp3160287.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color:#fff;
 }
-
+#home{
+  color:#fff;
+}
 .navbar {
   margin-bottom: 40px;
 }
@@ -16,17 +22,23 @@ footer {
     width: 100%;
     bottom: 0;
 }
-
-#moviesPanel img {
-  /* height: 200px;
-  object-fit: cover; */
+.row{
+  margin-bottom: 200px;
+}
+#movies {
+  margin: 100px 0 100px 0 ;
 }
 img {
-  object-fit: cover;
-  height: 200px;
+  /* object-fit: cover;
+  height: 200px; */
 }
-
+.card{
+  color: #000;
+}
 nav > form > button{
   background-color: black;
   color: white
+}
+a{
+  text-decoration: none;
 }
